@@ -3,13 +3,20 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Replace medium.com with freedium.cfd
-// @author       Stakancheck
+// @author       You
 // @match        https://medium.com/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    // Check if there is a button with aria-label="Member-only story"
+    var memberOnlyButton = document.querySelector('button[aria-label="Member-only story"]');
+    if (!memberOnlyButton) {
+        // If there is no such button, stop the script
+        return;
+    }
 
     // Create a button
     var button = document.createElement('button');
